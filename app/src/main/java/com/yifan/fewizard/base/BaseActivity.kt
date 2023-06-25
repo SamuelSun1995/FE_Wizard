@@ -21,6 +21,5 @@ open class BaseActivity<DB : ViewDataBinding, VM : BaseViewModel> : AppCompatAct
         super.onCreate(savedInstanceState)
         mActivityBaseBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_base)
-        DataBindingUtil.inflate<>()
     }
 }
