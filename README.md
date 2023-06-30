@@ -11,6 +11,8 @@ Kotlin协程
 思考哪些地方可能会存在多线程带来的线程同步问题以及处理方案
 Retrofit+OkHttp
 
+
+Jetpack从入门到几乎入门
 REF：https://juejin.cn/post/7149594482730598408
 https://juejin.cn/post/7150940351174279198
 https://juejin.cn/post/7150960510203068452
@@ -73,3 +75,11 @@ companion object {
 表达式：fun 方法名(参数名1: 数据类型, 参数名2: 数据类型): 返回值数据类型{
 
 }
+
+##  Lifecycle基本使用
+https://zhuanlan.zhihu.com/p/533420346
+作为生命周期感知组件、它的作用就是监听宿主Activity/Fragment，然后派发给观察者。这句看似简单的概括，却倒出3个重要的角色：
+宿主，观察者，用来派发的调度器
+
+## Kotlin的静态方法
+https://www.jianshu.com/p/a71f41186aa0
