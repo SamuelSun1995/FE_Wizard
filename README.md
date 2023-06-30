@@ -1,6 +1,13 @@
 # FE_Wizard
+## 权限相关
+Kotlin 协程 一行代码动态申请权限（CoroutinePermissions）
+https://www.jianshu.com/p/c1008263e574
+RxPermissions
+https://juejin.cn/post/6844904205400932365
+
 ## MVVM搭建
 https://juejin.cn/post/6844903955693043725
+https://github.com/ccaong/JetpackDemo
 - DataBinding
 - Lifecycles
 

@@ -10,7 +10,7 @@ import com.yifan.fewizard.config.LoadState
 
 abstract class BaseViewModel : ViewModel(), DefaultLifecycleObserver {
 
-    var resources: Resources? = null
+    var mResources: Resources? = null
 
     /**
      * 加载状态
@@ -25,9 +25,9 @@ abstract class BaseViewModel : ViewModel(), DefaultLifecycleObserver {
     open fun reloadData() {}
 
     open fun getResources(): Resources? {
-        if (resources == null) {
-            resources = App().mContext?.resources
+        if (mResources == null) {
+            mResources = App().mContext?.resources
         }
-        return resources
+        return mResources
     }
 }

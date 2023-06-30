@@ -2,7 +2,7 @@
     <!--Fuel Economy Wizard-->
     <string name="app_name">油耗助手</string>
 
-    <string name="app_slogan">仰望星空，世界如此美妙</string>
+    <string name="app_slogan">记录美好生活</string>
     <!--加载-->
     <string name="loading">加载中&#8230;</string>
     <string name="load_error">加载出错</string>

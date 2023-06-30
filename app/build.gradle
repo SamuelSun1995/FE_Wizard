@@ -45,4 +45,12 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    //RxJava
+    implementation  'io.reactivex.rxjava2:rxjava:2.2.4'
+    implementation  'io.reactivex.rxjava2:rxandroid:2.1.0'
+    //RxPermission（配套rxjava使用的）
+    implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
+    //单独使用使用下面的RxPermission（建议使用上面的RxJava+RxPermission）
+    implementation 'com.github.tbruyelle:rxpermissions:0.12'
 }
