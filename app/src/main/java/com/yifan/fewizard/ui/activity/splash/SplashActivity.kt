@@ -1,20 +1,21 @@
 package com.yifan.fewizard.ui.activity.splash
 
 import android.Manifest
+import android.content.Intent
 import android.graphics.Typeface
 import android.util.Log
 import androidx.lifecycle.ViewModelProvider
-import com.tbruyelle.rxpermissions2.Permission
 import com.tbruyelle.rxpermissions2.RxPermissions
+import com.yifan.fewizard.MainActivity
 import com.yifan.fewizard.R
 import com.yifan.fewizard.base.BaseActivity
 import com.yifan.fewizard.databinding.ActivitySplashBinding
-import java.util.function.Consumer
 
 class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>() {
 
     private val FONTS = "fonts/yizhi.ttf"
     private val TAG = "SplashActivity"
+    private val FLAG_MAIN_DELAY: Long = 2000
 
     private val permsGrouping = arrayOf(
         Manifest.permission.READ_CONTACTS,
@@ -66,20 +67,28 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>() {
         //星号的作用是，在数组对象前加*号可以将数组展开，以方便传值。
         rxPermissions.requestEach(*permsGrouping)
             // 这边Kotlin语法有时间再看下
-            .subscribe {
-                Consumer<Permission> { t ->
-                    if (t.granted) {
-                        // 用户已经同意该权限
-                        Log.d(TAG, t.name + " is granted.");
-                    } else if (t.shouldShowRequestPermissionRationale) {
-                        // 用户拒绝了该权限，没有选中『不再询问』（Never ask again）,那么下次再次启动时。还会提示请求权限的对话框
-                        Log.d(TAG, t.name + " is denied. More info should be provided.");
-                    } else {
-                        // 用户拒绝了该权限，而且选中『不再询问』
-                        Log.d(TAG, t.name + " is denied.");
-                    }
+            .subscribe { t ->
+                if (t.granted) {
+                    // 用户已经同意该权限
+                    Log.d(TAG, t.name + " is granted.");
+                } else if (t.shouldShowRequestPermissionRationale) {
+                    // 用户拒绝了该权限，没有选中『不再询问』（Never ask again）,那么下次再次启动时。还会提示请求权限的对话框
+                    Log.d(TAG, t.name + " is denied. More info should be provided.");
+                } else {
+                    // 用户拒绝了该权限，而且选中『不再询问』
+                    Log.d(TAG, t.name + " is denied.");
                 }
+                showT("delayToMain...")
+                delayToMain()
             }
+    }
+
+    private fun delayToMain() {
+        handleEventDelay({
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }, FLAG_MAIN_DELAY)
     }
 }
 

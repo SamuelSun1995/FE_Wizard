@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
@@ -37,6 +38,8 @@ abstract class BaseActivity<DB : ViewDataBinding, VM : BaseViewModel> : AppCompa
     private lateinit var mViewNoDataBinding: ViewNoDataBinding
 
     private lateinit var mViewLoadErrorBinding: ViewLoadErrorBinding
+
+    protected var mHandler: Handler? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -212,5 +215,20 @@ abstract class BaseActivity<DB : ViewDataBinding, VM : BaseViewModel> : AppCompa
      */
     protected open fun showT(msg: String) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+    }
+
+    /**
+     * 延时处理
+     *
+     * @param runnable
+     * @param delayMillis
+     */
+    open fun handleEventDelay(runnable: Runnable?, delayMillis: Long) {
+        if (mHandler == null) {
+            mHandler = Handler()
+        }
+        if (runnable != null) {
+            mHandler?.postDelayed(runnable, delayMillis)
+        }
     }
 }
