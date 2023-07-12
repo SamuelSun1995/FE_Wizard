@@ -6,7 +6,7 @@ import android.graphics.Typeface
 import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import com.tbruyelle.rxpermissions2.RxPermissions
-import com.yifan.fewizard.MainActivity
+import com.yifan.fewizard.ui.activity.main.MainActivity
 import com.yifan.fewizard.R
 import com.yifan.fewizard.base.BaseActivity
 import com.yifan.fewizard.databinding.ActivitySplashBinding

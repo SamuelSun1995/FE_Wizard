@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/nav_home">
+
+    <!--https://blog.csdn.net/xingyu19911016/article/details/122337487-->
+    <!--https://developer.android.google.cn/jetpack/androidx/releases/navigation?hl=zh-cn#kts-->
+    <!--https://juejin.cn/post/7036296113573347364-->
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.yifan.fewizard.ui.fragment.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+<!--        <action-->
+<!--            android:id="@+id/action_homeFragment_to_mineFragment"-->
+<!--            app:destination="@id/nav_mine" />-->
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_mine"
+        android:name="com.yifan.fewizard.ui.fragment.home.MineFragment"
+        android:label="MineFragment"
+        tools:layout="@layout/fragment_mine">
+    </fragment>
+
+</navigation>

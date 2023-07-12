@@ -7,4 +7,7 @@
     </style>
 
     <style name="Theme.Fewizard" parent="Base.Theme.Fewizard" />
+
+    <style name="Theme.Fewizard.Main" parent="Theme.Material3.Light" >
+    </style>
 </resources>
