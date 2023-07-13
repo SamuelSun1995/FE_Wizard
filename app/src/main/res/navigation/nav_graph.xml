@@ -13,17 +13,24 @@
         android:name="com.yifan.fewizard.ui.fragment.home.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
-<!--        <action-->
-<!--            android:id="@+id/action_homeFragment_to_mineFragment"-->
-<!--            app:destination="@id/nav_mine" />-->
+        <action
+            android:id="@+id/action_homeFragment_to_mineFragment"
+            app:destination="@id/nav_mine" />
+        <argument
+            android:name="mileage"
+            app:argType="float"
+             />
 
+        <argument
+            android:name="refuel"
+            app:argType="float"
+             />
     </fragment>
 
     <fragment
         android:id="@+id/nav_mine"
         android:name="com.yifan.fewizard.ui.fragment.home.MineFragment"
         android:label="MineFragment"
-        tools:layout="@layout/fragment_mine">
-    </fragment>
+        tools:layout="@layout/fragment_mine"></fragment>
 
 </navigation>

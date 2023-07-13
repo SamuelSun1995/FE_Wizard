@@ -21,4 +21,9 @@
     <!--  NAV string  -->
     <string name="menu_home">首页</string>
     <string name="menu_mine">我的</string>
+    <string name="add">添加</string>
+
+    <string name="moto_name">尊贵的UY125车主</string>
+    <string name="last_fuel">最新油耗</string>
+    <string name="unit_l">升/百公里</string>
 </resources>
