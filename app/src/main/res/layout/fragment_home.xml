@@ -3,6 +3,9 @@
 
     <data>
 
+        <variable
+            name="fuelC"
+            type="androidx.databinding.ObservableField&lt;String>" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -44,7 +47,7 @@
                     android:id="@+id/tv_last_fuel_fact"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0.00"
+                    android:text="@{fuelC}"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 

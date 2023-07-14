@@ -7,10 +7,12 @@ import android.util.Log
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.yifan.fewizard.R
 import com.yifan.fewizard.base.BaseActivity
+import com.yifan.fewizard.bean.FuelBean
 import com.yifan.fewizard.databinding.ActivityMainBinding
 
 
@@ -45,16 +47,28 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
                 layoutInflater.inflate(R.layout.dialog_add_fuel_layout, null) as LinearLayout
             builder.setView(diaLayout)
             builder.setPositiveButton("确定") { _: DialogInterface, _: Int ->
-                val bundle = Bundle()
-                bundle.putFloat(
-                    "mileage",
-                    diaLayout.findViewById<EditText>(R.id.ed_mileage).text.trim().toString().toFloat()
+                mViewModel.fuelC.set(
+                    diaLayout.findViewById<EditText>(R.id.ed_refuel).text.trim().toString()
+                        .toFloat()
+                        .div(
+                            diaLayout.findViewById<EditText>(R.id.ed_mileage).text.trim().toString()
+                                .toFloat()
+                        )
+                        .toString()
                 )
-                bundle.putFloat(
-                    "refuel",
-                    diaLayout.findViewById<EditText>(R.id.ed_refuel).text.trim().toString().toFloat()
-                )
-                findNavController(R.id.nav_host_fragment_container).navigate(R.id.nav_home, bundle)
+                Log.d(_tag, " fuelC:" + mViewModel.fuelC.get().toString())
+//                fuelBean.fuelC =  diaLayout.findViewById<EditText>(R.id.ed_refuel).text.trim().toString().toFloat().div()
+//                diaLayout.findViewById<EditText>(R.id.ed_mileage).text.trim().toString().toFloat()
+//                val bundle = Bundle()
+//                bundle.putFloat(
+//                    "mileage",
+//                    diaLayout.findViewById<EditText>(R.id.ed_mileage).text.trim().toString().toFloat()
+//                )
+//                bundle.putFloat(
+//                    "refuel",
+//                    diaLayout.findViewById<EditText>(R.id.ed_refuel).text.trim().toString().toFloat()
+//                )
+//                findNavController(R.id.nav_host_fragment_container).navigate(R.id.nav_home, bundle)
             }
             builder.setNegativeButton("取消") { _: DialogInterface, _: Int ->
             }

@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="fuelBean"
+            type="com.yifan.fewizard.bean.FuelBean" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
