@@ -1,4 +1,8 @@
 # FE_Wizard
+## MVVM中activity和fragment通信最快捷的方式就是共享viewModel
+其中有个Kotlin上的问题就是在fragment上用getActivity需要用requireActivity()代替
+此外组件之间的通信还有很多，下一步我打算用eventBUS
+
 ## 图标使用
 https://www.iconfont.cn/collections/detail?spm=a313x.7781069.1998910419.d9df05512&cid=748
 ## 权限相关

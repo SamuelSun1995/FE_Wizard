@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import com.github.mikephil.charting.charts.LineChart
 import com.yifan.fewizard.R
 import com.yifan.fewizard.config.LoadState
 import com.yifan.fewizard.databinding.ActivityBaseBinding
