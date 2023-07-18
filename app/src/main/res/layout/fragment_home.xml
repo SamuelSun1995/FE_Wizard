@@ -40,6 +40,7 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/container_fuel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
