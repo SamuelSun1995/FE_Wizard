@@ -14,6 +14,8 @@ import com.yifan.fewizard.R
 import com.yifan.fewizard.base.BaseActivity
 import com.yifan.fewizard.bean.FuelBean
 import com.yifan.fewizard.databinding.ActivityMainBinding
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
@@ -48,13 +50,13 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
             builder.setView(diaLayout)
             builder.setPositiveButton("确定") { _: DialogInterface, _: Int ->
                 mViewModel.setFuelLiveData(
-                    diaLayout.findViewById<EditText>(R.id.ed_refuel).text.trim().toString()
-                        .toFloat()
-                        .div(
-                            diaLayout.findViewById<EditText>(R.id.ed_mileage).text.trim().toString()
-                                .toFloat()
-                        ).times(100)
-                        .toString()
+                        diaLayout.findViewById<EditText>(R.id.ed_refuel).text.trim().toString()
+                            .toFloat()
+                            .div(
+                                diaLayout.findViewById<EditText>(R.id.ed_mileage).text.trim()
+                                    .toString()
+                                    .toFloat()
+                            ).times(100)
                 )
 
                 Log.d(_tag, " fuelC:" + mViewModel.getFuelLiveData().value.toString())
