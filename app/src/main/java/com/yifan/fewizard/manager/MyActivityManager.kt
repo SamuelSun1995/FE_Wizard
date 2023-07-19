@@ -16,7 +16,7 @@ class MyActivityManager {
             if (sInstance == null) {
                 sInstance = MyActivityManager()
             }
-            return sInstance!!
+            return sInstance as MyActivityManager
         }
     }
 

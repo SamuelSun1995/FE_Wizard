@@ -1,12 +1,11 @@
 package com.yifan.fewizard.ui.activity.main
 
-import android.os.Build
 import android.util.Log
-import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.yifan.fewizard.base.BaseViewModel
-import com.yifan.fewizard.bean.FuelBean
+import com.yifan.fewizard.entity.FuelEntity
+import com.yifan.fewizard.manager.DbManager
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.time.LocalDateTime
@@ -17,13 +16,29 @@ class MainViewModel : BaseViewModel() {
 
     private var fuelLiveData = MutableLiveData<String>()
 
-    private val fuelBean = FuelBean()
+    private val fuelBean = FuelEntity()
 
-    fun setFuelLiveData(s: Float) {
+    fun setFuelLiveData(refuel: String, mileage: String) {
         oldFuelSaveDb()
-        fuelLiveData.value = getNoMoreThanTwoDigits(s)
+        fuelLiveData.value =
+            getNoMoreThanTwoDigits(refuel.toFloat().div(mileage.toFloat()).times(100))
         fuelBean.fuelC = fuelLiveData.value.toString()
         fuelBean.date = LocalDateTime.now().toString()
+        fuelBean.refuel = refuel
+        fuelBean.mileage = mileage
+        DbManager.getInstance().getFuelDao().insert(fuelBean)
+        Log.d(_tag, "setFuelLiveData...${fuelBean.date}")
+    }
+
+    fun editFuelLiveData(refuel: String, mileage: String) {
+        fuelLiveData.value =
+            getNoMoreThanTwoDigits(refuel.toFloat().div(mileage.toFloat()).times(100))
+        fuelBean.fuelC = fuelLiveData.value.toString()
+        fuelBean.date = LocalDateTime.now().toString()
+        fuelBean.refuel = refuel
+        fuelBean.mileage = mileage
+        val all = DbManager.getInstance().getFuelDao().getAll()
+        Log.d(_tag, "setFuelLiveData...${all[1].fuelC}")
     }
 
     private fun oldFuelSaveDb() {

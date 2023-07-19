@@ -2,20 +2,14 @@ package com.yifan.fewizard.ui.activity.main
 
 import android.app.AlertDialog
 import android.content.DialogInterface
-import android.os.Bundle
 import android.util.Log
 import android.widget.EditText
 import android.widget.LinearLayout
-import android.widget.TextView
-import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.yifan.fewizard.R
 import com.yifan.fewizard.base.BaseActivity
-import com.yifan.fewizard.bean.FuelBean
 import com.yifan.fewizard.databinding.ActivityMainBinding
-import java.math.RoundingMode
-import java.text.DecimalFormat
 
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
@@ -50,21 +44,22 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
             builder.setView(diaLayout)
             builder.setPositiveButton("确定") { _: DialogInterface, _: Int ->
                 mViewModel.setFuelLiveData(
-                        diaLayout.findViewById<EditText>(R.id.ed_refuel).text.trim().toString()
-                            .toFloat()
-                            .div(
-                                diaLayout.findViewById<EditText>(R.id.ed_mileage).text.trim()
-                                    .toString()
-                                    .toFloat()
-                            ).times(100)
+                    diaLayout.findViewById<EditText>(R.id.ed_refuel).text.trim().toString(),
+                    diaLayout.findViewById<EditText>(R.id.ed_mileage).text.trim()
+                        .toString()
                 )
-
                 Log.d(_tag, " fuelC:" + mViewModel.getFuelLiveData().value)
             }
             builder.setNegativeButton("取消") { _: DialogInterface, _: Int ->
             }
             builder.create().show()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        //把最新的油耗记录存起来
+
     }
 
     override fun getLayoutResId(): Int {

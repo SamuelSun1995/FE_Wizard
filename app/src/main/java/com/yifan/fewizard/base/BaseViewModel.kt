@@ -26,7 +26,7 @@ abstract class BaseViewModel : ViewModel(), DefaultLifecycleObserver {
 
     open fun getResources(): Resources? {
         if (mResources == null) {
-            mResources = App().mContext?.resources
+            mResources = App.mContext.resources
         }
         return mResources
     }

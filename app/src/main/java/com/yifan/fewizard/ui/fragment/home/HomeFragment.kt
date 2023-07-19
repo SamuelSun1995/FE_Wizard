@@ -3,14 +3,13 @@ package com.yifan.fewizard.ui.fragment.home
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.util.Log
-import android.view.View.OnLongClickListener
 import android.widget.EditText
 import android.widget.LinearLayout
 import androidx.lifecycle.ViewModelProvider
 import com.yifan.fewizard.BR
 import com.yifan.fewizard.R
 import com.yifan.fewizard.base.BaseFragment
-import com.yifan.fewizard.bean.FuelBean
+import com.yifan.fewizard.entity.FuelEntity
 import com.yifan.fewizard.databinding.FragmentHomeBinding
 import com.yifan.fewizard.ui.activity.main.MainViewModel
 
@@ -38,14 +37,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, MainViewModel>() {
                 layoutInflater.inflate(R.layout.dialog_add_fuel_layout, null) as LinearLayout
             builder.setView(diaLayout)
             builder.setPositiveButton("确定") { _: DialogInterface, _: Int ->
-                mViewModel.setFuelLiveData(
-                    diaLayout.findViewById<EditText>(R.id.ed_refuel).text.trim().toString()
-                        .toFloat()
-                        .div(
-                            diaLayout.findViewById<EditText>(R.id.ed_mileage).text.trim()
-                                .toString()
-                                .toFloat()
-                        ).times(100)
+                mViewModel.editFuelLiveData(
+                    diaLayout.findViewById<EditText>(R.id.ed_refuel).text.trim().toString(),
+                    diaLayout.findViewById<EditText>(R.id.ed_mileage).text.trim()
+                        .toString()
                 )
 
                 Log.d(_tag, " fuelC:" + mViewModel.getFuelLiveData().value)
@@ -57,13 +52,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, MainViewModel>() {
         }
     }
 
-    private fun getDataFromServer(): List<FuelBean> {
-        val list = ArrayList<FuelBean>()
+    private fun getDataFromServer(): List<FuelEntity> {
+        val list = ArrayList<FuelEntity>()
         return list
     }
 
-    private fun getDataFromDb(): List<FuelBean> {
-        val list = ArrayList<FuelBean>()
+    private fun getDataFromDb(): List<FuelEntity> {
+        val list = ArrayList<FuelEntity>()
         return list
     }
 
