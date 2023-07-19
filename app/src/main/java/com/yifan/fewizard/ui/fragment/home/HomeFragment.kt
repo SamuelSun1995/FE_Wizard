@@ -1,7 +1,11 @@
 package com.yifan.fewizard.ui.fragment.home
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.util.Log
-import android.view.View
+import android.view.View.OnLongClickListener
+import android.widget.EditText
+import android.widget.LinearLayout
 import androidx.lifecycle.ViewModelProvider
 import com.yifan.fewizard.BR
 import com.yifan.fewizard.R
@@ -16,7 +20,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, MainViewModel>() {
     private val _tag = "HomeFragment"
     override fun init() {
         mViewModel.getFuelLiveData().observe(this) { s: String ->
-            Log.d(_tag, "init: fuelLiveData:$s")
+            Log.d(_tag, "init: fuelLiveData:${s.toString()}")
         }
         //获取服务器的数据
         getDataFromServer()
@@ -27,9 +31,30 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, MainViewModel>() {
     }
 
     private fun editFuelC() {
-//        mDataBinding.containerFuel.setOnLongClickListener {
-//
-//        }
+        mDataBinding.containerFuel.setOnLongClickListener {
+            //弹出对话框
+            val builder = AlertDialog.Builder(context).setTitle("记录油耗").setIcon(R.mipmap.fuel)
+            val diaLayout =
+                layoutInflater.inflate(R.layout.dialog_add_fuel_layout, null) as LinearLayout
+            builder.setView(diaLayout)
+            builder.setPositiveButton("确定") { _: DialogInterface, _: Int ->
+                mViewModel.setFuelLiveData(
+                    diaLayout.findViewById<EditText>(R.id.ed_refuel).text.trim().toString()
+                        .toFloat()
+                        .div(
+                            diaLayout.findViewById<EditText>(R.id.ed_mileage).text.trim()
+                                .toString()
+                                .toFloat()
+                        ).times(100)
+                )
+
+                Log.d(_tag, " fuelC:" + mViewModel.getFuelLiveData().value)
+            }
+            builder.setNegativeButton("取消") { _: DialogInterface, _: Int ->
+            }
+            builder.create().show()
+            false
+        }
     }
 
     private fun getDataFromServer(): List<FuelBean> {

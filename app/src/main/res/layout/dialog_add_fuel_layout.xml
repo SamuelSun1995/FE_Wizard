@@ -3,9 +3,6 @@
 
     <data>
 
-        <variable
-            name="fuelBean"
-            type="com.yifan.fewizard.bean.FuelBean" />
     </data>
 
     <LinearLayout
@@ -26,7 +23,6 @@
                 android:id="@+id/ed_mileage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@={fuelBean.mileage}"
                 android:hint="请输入当前小记里程" />
         </LinearLayout>
 
@@ -43,7 +39,6 @@
                 android:id="@+id/ed_refuel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@={fuelBean.refuel}"
                 android:hint="本次加油" />
         </LinearLayout>
     </LinearLayout>

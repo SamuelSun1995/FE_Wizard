@@ -59,7 +59,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
                             ).times(100)
                 )
 
-                Log.d(_tag, " fuelC:" + mViewModel.getFuelLiveData().value.toString())
+                Log.d(_tag, " fuelC:" + mViewModel.getFuelLiveData().value)
             }
             builder.setNegativeButton("取消") { _: DialogInterface, _: Int ->
             }
