@@ -1,4 +1,7 @@
 # FE_Wizard
+## Kotlin的单例只需要将class改成object
+## RxJava + Retrofit + MVP
+https://juejin.cn/post/6844903921136189454
 ## MVVM中activity和fragment通信最快捷的方式就是共享viewModel
 其中有个Kotlin上的问题就是在fragment上用getActivity需要用requireActivity()代替
 此外组件之间的通信还有很多，下一步我打算用eventBUS

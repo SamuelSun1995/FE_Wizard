@@ -55,6 +55,10 @@ dependencies {
     implementation 'androidx.room:room-ktx:2.4.2'
     kapt 'androidx.room:room-compiler:2.4.2'
 
+    //glide
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+
     //RxJava
     implementation  'io.reactivex.rxjava2:rxjava:2.2.4'
     implementation  'io.reactivex.rxjava2:rxandroid:2.1.0'
@@ -65,4 +69,10 @@ dependencies {
 
     //MPAndroidChart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+    //okhttp、retrofit、rxjava
+    implementation 'com.squareup.okhttp3:okhttp:3.8.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
 }

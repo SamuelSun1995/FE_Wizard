@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.yifan.fewizard.base.BaseViewModel
-import com.yifan.fewizard.entity.FuelEntity
+import com.yifan.fewizard.database.entity.FuelEntity
 import com.yifan.fewizard.manager.DbManager
 import java.math.RoundingMode
 import java.text.DecimalFormat
@@ -16,35 +16,35 @@ class MainViewModel : BaseViewModel() {
 
     private var fuelLiveData = MutableLiveData<String>()
 
-    private val fuelBean = FuelEntity()
+    private val mFuelBean = FuelEntity()
 
     fun setFuelLiveData(refuel: String, mileage: String) {
         oldFuelSaveDb()
         fuelLiveData.value =
             getNoMoreThanTwoDigits(refuel.toFloat().div(mileage.toFloat()).times(100))
-        fuelBean.fuelC = fuelLiveData.value.toString()
-        fuelBean.date = LocalDateTime.now().toString()
-        fuelBean.refuel = refuel
-        fuelBean.mileage = mileage
-        DbManager.getInstance().getFuelDao().insert(fuelBean)
-        Log.d(_tag, "setFuelLiveData...${fuelBean.date}")
+        mFuelBean.fuelC = fuelLiveData.value.toString()
+        mFuelBean.date = LocalDateTime.now().toString()
+        mFuelBean.refuel = refuel
+        mFuelBean.mileage = mileage
+        Log.d(_tag, "setFuelLiveData...${mFuelBean.date}")
     }
 
     fun editFuelLiveData(refuel: String, mileage: String) {
         fuelLiveData.value =
             getNoMoreThanTwoDigits(refuel.toFloat().div(mileage.toFloat()).times(100))
-        fuelBean.fuelC = fuelLiveData.value.toString()
-        fuelBean.date = LocalDateTime.now().toString()
-        fuelBean.refuel = refuel
-        fuelBean.mileage = mileage
+        mFuelBean.fuelC = fuelLiveData.value.toString()
+        mFuelBean.date = LocalDateTime.now().toString()
+        mFuelBean.refuel = refuel
+        mFuelBean.mileage = mileage
         val all = DbManager.getInstance().getFuelDao().getAll()
         Log.d(_tag, "setFuelLiveData...${all[1].fuelC}")
     }
 
     private fun oldFuelSaveDb() {
-        if (fuelBean.date == null) {
+        if (mFuelBean.date == null) {
             return
         }
+        DbManager.getInstance().getFuelDao().insert(mFuelBean)
         Log.d(_tag, "oldFuelSaveDb...")
     }
 

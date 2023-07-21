@@ -1,4 +1,4 @@
-package com.yifan.fewizard.dao
+package com.yifan.fewizard.database.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
@@ -6,7 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import com.yifan.fewizard.entity.FuelEntity
+import com.yifan.fewizard.database.entity.FuelEntity
 
 
 @Dao

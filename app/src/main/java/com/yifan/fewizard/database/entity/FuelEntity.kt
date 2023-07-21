@@ -1,4 +1,4 @@
-package com.yifan.fewizard.entity
+package com.yifan.fewizard.database.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

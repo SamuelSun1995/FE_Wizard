@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.yifan.fewizard.BR
 import com.yifan.fewizard.R
 import com.yifan.fewizard.base.BaseFragment
-import com.yifan.fewizard.entity.FuelEntity
+import com.yifan.fewizard.database.entity.FuelEntity
 import com.yifan.fewizard.databinding.FragmentHomeBinding
 import com.yifan.fewizard.ui.activity.main.MainViewModel
 

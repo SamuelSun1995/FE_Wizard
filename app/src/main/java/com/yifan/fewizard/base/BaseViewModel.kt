@@ -30,4 +30,6 @@ abstract class BaseViewModel : ViewModel(), DefaultLifecycleObserver {
         }
         return mResources
     }
+
+    fun getApiService(){}
 }

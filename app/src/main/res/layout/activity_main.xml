@@ -6,7 +6,7 @@
     <data>
         <variable
             name="fuelBean"
-            type="com.yifan.fewizard.entity.FuelEntity" />
+            type="com.yifan.fewizard.database.entity.FuelEntity" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
