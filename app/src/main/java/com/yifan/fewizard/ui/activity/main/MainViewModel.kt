@@ -1,6 +1,7 @@
 package com.yifan.fewizard.ui.activity.main
 
 import android.util.Log
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.yifan.fewizard.base.BaseViewModel
@@ -68,5 +69,11 @@ class MainViewModel : BaseViewModel() {
         //未保留小数的舍弃规则，RoundingMode.FLOOR表示直接舍弃。
         format.roundingMode = RoundingMode.FLOOR
         return format.format(number)
+    }
+
+    override fun onDestroy(owner: LifecycleOwner) {
+        super.onDestroy(owner)
+        //销毁时插入
+        DbManager.getInstance().getFuelDao().insert(mFuelBean)
     }
 }
