@@ -13,7 +13,7 @@ import com.yifan.fewizard.database.entity.FuelEntity
 interface FuelDao {
 
     //查询所有数据
-    @Query("Select * from fuelentity")
+    @Query("Select * from fuelentity order by date DESC")
     fun getAll(): List<FuelEntity>
 
     //删除全部数据
