@@ -7,6 +7,7 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.yifan.fewizard.BR
 import com.yifan.fewizard.R
 import com.yifan.fewizard.adapter.FuelRecyclerAdapter
@@ -20,6 +21,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, MainViewModel>() {
 
     private val _tag = "HomeFragment"
 
+    private lateinit var mAdapter: FuelRecyclerAdapter
     override fun init() {
         mViewModel.getFuelLiveData().observe(this) { s: String ->
             Log.d(_tag, "init: fuelLiveData:${s.toString()}")
@@ -31,7 +33,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, MainViewModel>() {
         //长按修改最新油耗记录
         editFuelC()
         mDataBinding.recylerFuel.layoutManager = LinearLayoutManager(activity)
-        mDataBinding.recylerFuel.adapter = FuelRecyclerAdapter(list)
+        mAdapter = FuelRecyclerAdapter(list as ArrayList<FuelEntity>)
+        mDataBinding.recylerFuel.adapter = mAdapter
+        mViewModel.setListAdapter(mAdapter)
+        mViewModel.initFuel(list[0].fuelC.toString())
     }
 
     private fun editFuelC() {

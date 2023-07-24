@@ -4,6 +4,8 @@ import android.util.Log
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.recyclerview.widget.RecyclerView
+import com.yifan.fewizard.adapter.FuelRecyclerAdapter
 import com.yifan.fewizard.base.BaseViewModel
 import com.yifan.fewizard.database.entity.FuelEntity
 import com.yifan.fewizard.manager.DbManager
@@ -18,37 +20,47 @@ class MainViewModel : BaseViewModel() {
 
     private var fuelLiveData = MutableLiveData<String>()
 
-    private val mFuelBean = FuelEntity()
+    private lateinit var mAdapter: FuelRecyclerAdapter
 
-    fun setFuelLiveData(refuel: String, mileage: String) {
-        oldFuelSaveDb()
+//    private val mFuelBean = FuelEntity()
+
+    fun setListAdapter(adapter: FuelRecyclerAdapter) {
+        mAdapter = adapter
+    }
+
+    fun initFuel(value: String) {
+        fuelLiveData.value = value
+    }
+
+    fun setFuel(refuel: String, mileage: String) {
+        val fuelEntity = FuelEntity()
         fuelLiveData.value =
             getNoMoreThanTwoDigits(refuel.toFloat().div(mileage.toFloat()).times(100))
-        mFuelBean.fuelC = fuelLiveData.value.toString()
-        mFuelBean.date = DateUtil.nowDate
-        mFuelBean.refuel = refuel
-        mFuelBean.mileage = mileage
-        Log.d(_tag, "setFuelLiveData...${mFuelBean.date}")
+        fuelEntity.fuelC = fuelLiveData.value.toString()
+        fuelEntity.date = DateUtil.nowDateTime
+        fuelEntity.refuel = refuel
+        fuelEntity.mileage = mileage
+        //存储数据库
+        DbManager.getInstance().getFuelDao().insert(fuelEntity)
+        //刷新recycler
+        mAdapter.addItem(fuelEntity)
     }
 
     fun editFuelLiveData(refuel: String, mileage: String) {
+        //获取到最新的数据
+        val fuelEntity = DbManager.getInstance().getFuelDao().getLatest()
         fuelLiveData.value =
             getNoMoreThanTwoDigits(refuel.toFloat().div(mileage.toFloat()).times(100))
-        mFuelBean.fuelC = fuelLiveData.value.toString()
-        mFuelBean.date = DateUtil.nowDate
-        mFuelBean.refuel = refuel
-        mFuelBean.mileage = mileage
-        val all = DbManager.getInstance().getFuelDao().getAll()
-        Log.d(_tag, "setFuelLiveData...${all[1].fuelC}")
+        fuelEntity.fuelC = fuelLiveData.value.toString()
+        fuelEntity.date = DateUtil.nowDateTime
+        fuelEntity.refuel = refuel
+        fuelEntity.mileage = mileage
+        //更新数据库
+        DbManager.getInstance().getFuelDao().update(fuelEntity)
+        //刷新recycler
+        mAdapter.updateItem(fuelEntity)
     }
 
-    private fun oldFuelSaveDb() {
-        if (mFuelBean.date == null) {
-            return
-        }
-        DbManager.getInstance().getFuelDao().insert(mFuelBean)
-        Log.d(_tag, "oldFuelSaveDb...")
-    }
 
     fun getFuelLiveData(): LiveData<String> {
         return fuelLiveData
@@ -74,6 +86,6 @@ class MainViewModel : BaseViewModel() {
     override fun onDestroy(owner: LifecycleOwner) {
         super.onDestroy(owner)
         //销毁时插入
-        DbManager.getInstance().getFuelDao().insert(mFuelBean)
+//        DbManager.getInstance().getFuelDao().insert(mFuelBean)
     }
 }

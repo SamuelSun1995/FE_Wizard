@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.yifan.fewizard.R
 import com.yifan.fewizard.database.entity.FuelEntity
 
-class FuelRecyclerAdapter(var list: List<FuelEntity>) :
+class FuelRecyclerAdapter(var list: ArrayList<FuelEntity>) :
     RecyclerView.Adapter<FuelRecyclerAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -35,5 +35,16 @@ class FuelRecyclerAdapter(var list: List<FuelEntity>) :
 
     override fun getItemCount(): Int {
         return list.size
+    }
+
+    fun addItem(fuelEntity: FuelEntity) {
+        list.add(0, fuelEntity)
+        // 通知适配器新元素添加
+        notifyItemInserted(0);
+    }
+
+    fun updateItem(fuelEntity: FuelEntity) {
+        list[0] = fuelEntity
+        notifyItemChanged(0)
     }
 }

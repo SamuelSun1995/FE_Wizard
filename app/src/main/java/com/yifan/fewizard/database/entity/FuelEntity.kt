@@ -21,4 +21,8 @@ class FuelEntity {
 
     var price: String? = null
 
+    override fun toString(): String {
+        return "id:$id， fuelC：$fuelC, date:$date, mileage:$mileage, refuel:$refuel, price:$price"
+    }
+
 }

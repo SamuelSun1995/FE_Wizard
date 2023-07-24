@@ -11,7 +11,8 @@ import com.yifan.fewizard.database.entity.FuelEntity
 
 @Dao
 interface FuelDao {
-
+    @Query("Select * from fuelentity order by date DESC limit 1")
+    fun getLatest(): FuelEntity
     //查询所有数据
     @Query("Select * from fuelentity order by date DESC")
     fun getAll(): List<FuelEntity>

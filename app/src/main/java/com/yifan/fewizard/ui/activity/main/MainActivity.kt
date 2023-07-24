@@ -43,7 +43,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
                 layoutInflater.inflate(R.layout.dialog_add_fuel_layout, null) as LinearLayout
             builder.setView(diaLayout)
             builder.setPositiveButton("确定") { _: DialogInterface, _: Int ->
-                mViewModel.setFuelLiveData(
+                mViewModel.setFuel(
                     diaLayout.findViewById<EditText>(R.id.ed_refuel).text.trim().toString(),
                     diaLayout.findViewById<EditText>(R.id.ed_mileage).text.trim()
                         .toString()
